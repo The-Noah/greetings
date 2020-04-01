@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Lightweight start page. Created for #7Days7Websites">
+  <meta name="keywords" content="start page, #7Days7Websites">
+  <meta name="author" content="The Noah">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <title>Greetings</title>
+  <script>document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") || (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"))</script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div class="container">
+    <div class="weather"></div>
+    <div class="btn--icon theme-toggle" onclick="setTheme(theme === 'light' ? 'dark' : 'light')">&#9728;</div>
+    <div class="btn--icon reset-button" onclick="localStorage.clear();window.location.reload();"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 172 172"><path d="M86,14.33333c-39.517,0 -71.66667,32.14967 -71.66667,71.66667c0,39.517 32.14967,71.66667 71.66667,71.66667c39.517,0 71.66667,-32.14967 71.66667,-71.66667h-14.33333c0,31.61217 -25.72117,57.33333 -57.33333,57.33333c-31.61217,0 -57.33333,-25.72117 -57.33333,-57.33333c0,-31.61217 25.72117,-57.33333 57.33333,-57.33333c15.8096,0 30.11952,6.45342 40.49447,16.83887l-18.99447,18.99447h50.16667v-50.16667l-21.06608,21.06608c-12.96279,-12.99449 -30.83999,-21.06608 -50.60059,-21.06608z"></path></svg></div>
+    <h1 class="clock">Greetings</h1>
+    <div class="search">
+      <img src="https://duckduckgo.com/assets/common/dax-logo.svg" alt="">
+      <input type="text" placeholder="Search" autofocus onkeyup="if(event.keyCode === 13){search(this.value)}">
+    </div>
+    <div class="sites">
+      <a onclick="editingSite=null;showDialog(true)">+</a>
+    </div>
+  </div>
+  <div class="dialog">
+    <span class="dialog__overlay" onclick="showDialog(false)"></span>
+    <div>
+      <div class="dialog__header">
+        <h3>Edit Site</h3>
+        <div class="close" onclick="showDialog(false)">&times;</div>
+      </div>
+      <div className="dialog__inner">
+        <input type="text" placeholder="name" id="newName"><br/><br/>
+        <input type="text" placeholder="url" id="newUrl"><br/><br/>
+        <input type="text" placeholder="icon url (optional)" id="newIcon"><br/><br/><br/>
+        <button class="btn" onclick="saveDialog()">Save</button>
+        &nbsp;&nbsp;
+        <button class="btn" onclick="deleteDialog()">Delete</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
